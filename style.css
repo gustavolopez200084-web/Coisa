@@ -36,6 +36,9 @@ body, html {
 #hud {
     padding-top: 40px;
     z-index: 10;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 #score-display {
@@ -43,6 +46,9 @@ body, html {
     text-transform: uppercase;
     letter-spacing: 2px;
     text-shadow: 0 0 10px var(--neon-green), 0 0 20px var(--neon-green);
+    display: flex;
+    align-items: baseline;
+    gap: 15px;
 }
 
 #counter {
@@ -50,11 +56,11 @@ body, html {
 }
 
 #next-level-info {
-    font-size: 1.2rem;
+    font-size: 0.9rem; /* Significativamente menor */
     color: var(--neon-blue);
-    margin-left: 20px;
     text-shadow: 0 0 5px var(--neon-blue);
     opacity: 0.8;
+    white-space: nowrap;
 }
 
 /* Estrelas flutuantes */
