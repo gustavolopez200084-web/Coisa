@@ -1,9 +1,11 @@
 const counterElement = document.getElementById('counter');
+const nextLevelInfoElement = document.getElementById('next-level-info');
 const abductionZone = document.getElementById('abduction-zone');
 const tractorBeam = document.getElementById('tractor-beam');
 const starsContainer = document.getElementById('stars-container');
 
 let score = 0;
+const thresholds = [50, 500, 5000, 25000];
 
 // Itens para abduzir categorizados por nível (tier)
 const itemTiers = {
@@ -227,14 +229,23 @@ function createItem() {
     abductionZone.appendChild(itemDiv);
 }
 
+function updateLevelInfo() {
+    const nextThreshold = thresholds.find(t => t > score);
+    if (nextThreshold) {
+        const remaining = nextThreshold - score;
+        nextLevelInfoElement.textContent = `(Faltam ${remaining.toLocaleString()} p/ próximo nível)`;
+    } else {
+        nextLevelInfoElement.textContent = "(Nível Máximo Atingido!)";
+    }
+}
+
 function abduct(element, itemData) {
     if (element.classList.contains('abducting')) return;
 
     // Incrementar Placar baseado no valor do item
     score += itemData.value;
     counterElement.textContent = score.toLocaleString(); // Formatação bonita para números grandes
-
-    // Som baseado no tamanho (Escala Logarítmica de Gravidade)
+    updateLevelInfo();
     if (audioCtx.state === 'suspended') {
         audioCtx.resume();
     }
@@ -276,6 +287,7 @@ function abduct(element, itemData) {
 
 // Iniciar Jogo
 createStars();
+updateLevelInfo(); // Inicializa o texto de progresso
 // Começa com 3 itens na tela
 for (let i = 0; i < 3; i++) {
     setTimeout(createItem, i * 400);

@@ -49,6 +49,14 @@ body, html {
     color: var(--neon-green);
 }
 
+#next-level-info {
+    font-size: 1.2rem;
+    color: var(--neon-blue);
+    margin-left: 20px;
+    text-shadow: 0 0 5px var(--neon-blue);
+    opacity: 0.8;
+}
+
 /* Estrelas flutuantes */
 #stars-container {
     position: absolute;
