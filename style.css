@@ -41,6 +41,18 @@ body, html {
     justify-content: center;
 }
 
+#stats-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    background: rgba(0, 0, 0, 0.5);
+    padding: 20px 40px;
+    border-radius: 20px;
+    border: 1px solid rgba(57, 255, 20, 0.2);
+    backdrop-filter: blur(10px);
+}
+
 #score-display {
     font-size: 2.5rem;
     text-transform: uppercase;
@@ -56,12 +68,48 @@ body, html {
 }
 
 #next-level-info {
-    font-size: 0.9rem; /* Significativamente menor */
+    font-size: 0.9rem;
     color: var(--neon-blue);
     text-shadow: 0 0 5px var(--neon-blue);
     opacity: 0.8;
     white-space: nowrap;
 }
+
+/* Health Bar */
+#health-container {
+    width: 100%;
+    max-width: 400px;
+}
+
+#health-label {
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#health-bar-bg {
+    width: 100%;
+    height: 12px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+#health-bar-fill {
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    box-shadow: 0 0 10px #ff4b2b;
+    transition: width 0.3s ease-out, background 0.3s;
+}
+
+#health-bar-fill.normal { background: linear-gradient(to right, #39ff14, #00f2ff); box-shadow: 0 0 10px var(--neon-green); }
+#health-bar-fill.warning { background: linear-gradient(to right, #f1c40f, #e67e22); box-shadow: 0 0 10px #f1c40f; }
+#health-bar-fill.critical { background: linear-gradient(to right, #ff416c, #ff4b2b); box-shadow: 0 0 10px #ff416c; }
 
 /* Estrelas flutuantes */
 #stars-container {
@@ -210,4 +258,51 @@ body, html {
     0% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
     50% { transform: translateY(-200px) scale(0.6) rotate(10deg); opacity: 0.8; }
     100% { transform: translateY(-450px) scale(0.1) rotate(20deg); opacity: 0; }
+}
+
+/* Game Over Screen */
+#game-over-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 100;
+    backdrop-filter: blur(20px);
+}
+
+#game-over-overlay h2 {
+    font-size: 4rem;
+    color: #ff416c;
+    text-shadow: 0 0 20px #ff416c;
+    margin-bottom: 20px;
+}
+
+#final-score {
+    font-size: 1.5rem;
+    margin-bottom: 40px;
+}
+
+#restart-btn {
+    padding: 15px 40px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 1.2rem;
+    background: transparent;
+    border: 2px solid var(--neon-green);
+    color: var(--neon-green);
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+#restart-btn:hover {
+    background: var(--neon-green);
+    color: black;
+    box-shadow: 0 0 20px var(--neon-green);
 }

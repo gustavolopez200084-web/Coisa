@@ -17,10 +17,18 @@
 
         <!-- HUD -->
         <nav id="hud">
-            <h1 id="score-display">
-                Abduções: <span id="counter">0</span>
-                <span id="next-level-info">Faltam 50 para o próximo nível</span>
-            </h1>
+            <div id="stats-container">
+                <h1 id="score-display">
+                    Abduções: <span id="counter">0</span>
+                    <span id="next-level-info">Faltam 50 para o próximo nível</span>
+                </h1>
+                <div id="health-container">
+                    <div id="health-label">Integridade da Nave: <span id="health-value">50</span>/50</div>
+                    <div id="health-bar-bg">
+                        <div id="health-bar-fill"></div>
+                    </div>
+                </div>
+            </div>
         </nav>
 
         <!-- Nave Mãe -->
@@ -47,6 +55,11 @@
         <main id="abduction-zone">
             <!-- Os itens serão gerados aqui via JS -->
         </main>
+    </div>
+    <div id="game-over-overlay">
+        <h2>FALHA NA MISSÃO</h2>
+        <div id="final-score">Abduções Totais: 0</div>
+        <button id="restart-btn">Reiniciar Sistema</button>
     </div>
 
     <script src="script.js"></script>
