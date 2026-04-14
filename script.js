@@ -194,7 +194,7 @@ restartBtn.addEventListener('click', () => {
 
 // MOVIMENTO DOS OBJETOS
 function updatePositions() {
-    if (isGameOver) return;
+    if (!gameStarted || isGameOver) return;
     const items = document.querySelectorAll('.abduction-item:not(.abducting)');
     items.forEach(item => {
         let x = parseFloat(item.dataset.x) || Math.random() * 80 + 10;
@@ -215,7 +215,7 @@ function updatePositions() {
 
 // CRIAÇÃO E ABDUÇÃO
 function createItem() {
-    if (isGameOver) return;
+    if (!gameStarted || isGameOver) return;
     const availableTiers = getAvailableTiers();
     const randomTierKey = availableTiers[Math.floor(Math.random() * availableTiers.length)];
     const tierItems = itemTiers[randomTierKey];
@@ -273,12 +273,35 @@ function abduct(element, itemData) {
 }
 
 // INICIAR TUDO
-createStars();
-updateLevelInfo();
-updateHealthUI();
-updatePositions();
-setInterval(drainHealth, 1000); // Dreno de vida a cada segundo
+let gameStarted = false;
 
-for (let i = 0; i < 3; i++) {
-    setTimeout(createItem, i * 400);
+function startGame() {
+    gameStarted = true;
+    document.getElementById('start-screen').style.display = 'none';
+    
+    // Inicia os loops do jogo
+    updateLevelInfo();
+    updateHealthUI();
+    updatePositions();
+    setInterval(drainHealth, 1000); // Dreno de vida a cada segundo
+
+    // Começa com 3 itens na tela
+    for (let i = 0; i < 3; i++) {
+        setTimeout(createItem, i * 400);
+    }
 }
+
+// Botões da Tela Inicial
+document.getElementById('start-btn').addEventListener('click', () => {
+    if (audioCtx.state === 'suspended') audioCtx.resume();
+    startGame();
+});
+
+document.getElementById('exit-btn').addEventListener('click', () => {
+    // Tenta fechar a aba
+    window.close();
+    // Fallback caso o navegador bloqueie window.close()
+    alert("Para sair, por favor feche esta aba do navegador.");
+});
+
+createStars(); // Estrelas aparecem mesmo no menu
