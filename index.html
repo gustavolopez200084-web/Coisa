@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Abduction Clicker - Invasão Alienígena</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="game-container">
+        <!-- Estrelas (Formas Geométricas) -->
+        <div id="stars-container"></div>
+
+        <!-- HUD -->
+        <nav id="hud">
+            <h1 id="score-display">Abduções: <span id="counter">0</span></h1>
+        </nav>
+
+        <!-- Nave Mãe -->
+        <div id="mothership-container">
+            <div id="ufo">
+                <svg viewBox="0 0 100 50" xmlns="http://www.w3.org/2000/svg">
+                    <!-- Base da Nave -->
+                    <ellipse cx="50" cy="30" rx="45" ry="15" fill="#2d2d2d" stroke="#00ff00" stroke-width="2" />
+                    <!-- Cúpula -->
+                    <path d="M 25 25 Q 50 0 75 25" fill="#1a1a1a" stroke="#00ff00" stroke-width="2" />
+                    <!-- Luzes -->
+                    <circle cx="20" cy="30" r="2" fill="#00ff00" class="blink-light" />
+                    <circle cx="35" cy="35" r="2" fill="#00ff00" class="blink-light" style="animation-delay: 0.2s" />
+                    <circle cx="50" cy="37" r="2" fill="#00ff00" class="blink-light" style="animation-delay: 0.4s" />
+                    <circle cx="65" cy="35" r="2" fill="#00ff00" class="blink-light" style="animation-delay: 0.6s" />
+                    <circle cx="80" cy="30" r="2" fill="#00ff00" class="blink-light" style="animation-delay: 0.8s" />
+                </svg>
+            </div>
+            <!-- Raio Trator -->
+            <div id="tractor-beam"></div>
+        </div>
+
+        <!-- Área de Abdução -->
+        <main id="abduction-zone">
+            <!-- Os itens serão gerados aqui via JS -->
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
